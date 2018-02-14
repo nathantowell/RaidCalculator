@@ -42,31 +42,30 @@ function trigger() {
 }
 
 function calculateCapacity(n, c, t) {
-	var l = n * c
-	var result = 0;
+	let e = 0
 	switch (t) {
 		case '0':
 			// RAID 0
-			result = l
+			e = 1
 			break
 		case '1':
 			// RAID 1
-			result = l / n
+			e = 1 / n
 			break
 		case '2':
 			// RAID 5
-			result = l - (l / n)
+			e = 1 - (1 / n)
 			break
 		case '3':
 			// RAID 6
-			result = l - (2 / n)
+			e = 1 - (2 / n)
 			break
 		case '4':
 			// RAID 10
-			result = l * 0.5
+			e = 1 * 0.5
 			break
 	}
-	return result
+	return e * (n * c)
 }
 
 function convertToFormatted(capacity) {
