@@ -1,46 +1,3 @@
-function trigger() {
-	var disks = parseInt($("#diskCount").val())
-	var capacity = parseInt($("#diskCapacity").val())
-	var type = $("#raidType").val()
-
-	$("#errorText").text('')
-	var result = test(disks, capacity, type);
-	if (result !== true) {
-		clearResults()
-		$("#errorText").text(result)
-		return console.log(result)
-	}	
-
-	var total = Math.floor(calculateCapacity(disks, capacity, type))
-	var formatted = Math.floor(convertToFormatted(total))
-
-	var tolerance = 0
-	switch (type) {
-		case '0':
-			// RAID 0
-			tolerance = 0
-			break
-		case '1':
-			// RAID 1
-			tolerance = drives - 1
-			break
-		case '2':
-			// RAID 5
-			tolerance = 1
-			break
-		case '3':
-			// RAID 6
-			tolerance = 2
-			break
-		case '4':
-			// RAID 10
-			tolerance = 1
-			break
-	}
-
-	setResults(total, formatted, tolerance)
-}
-
 function calculateCapacity(n, c, t) {
 	let e = 0
 	switch (t) {
@@ -102,6 +59,49 @@ function clearResults() {
 	$("#totalCapacityResult").text('--')
 	$("#formattedCapacityResult").text('--')
 	$("#toleranceResult").text('--')
+}
+
+function trigger() {
+	var disks = parseInt($("#diskCount").val())
+	var capacity = parseInt($("#diskCapacity").val())
+	var type = $("#raidType").val()
+
+	$("#errorText").text('')
+	var result = test(disks, capacity, type);
+	if (result !== true) {
+		clearResults()
+		$("#errorText").text(result)
+		return console.log(result)
+	}	
+
+	var total = Math.floor(calculateCapacity(disks, capacity, type))
+	var formatted = Math.floor(convertToFormatted(total))
+
+	var tolerance = 0
+	switch (type) {
+		case '0':
+			// RAID 0
+			tolerance = 0
+			break
+		case '1':
+			// RAID 1
+			tolerance = disks - 1
+			break
+		case '2':
+			// RAID 5
+			tolerance = 1
+			break
+		case '3':
+			// RAID 6
+			tolerance = 2
+			break
+		case '4':
+			// RAID 10
+			tolerance = 1
+			break
+	}
+
+	setResults(total, formatted, tolerance)
 }
 
 $(":text").keyup(function() {
