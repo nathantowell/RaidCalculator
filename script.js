@@ -50,8 +50,8 @@ function test(disks, capacity, type) {
 }
 
 function setResults(gb, gib, tolerance) {
-	$("#gbCapacityResult").text(gb + ' GB')
-	$("#gibCapacityResult").text(gib + ' GiB')
+	$("#gbCapacityResult").text(gb)
+	$("#gibCapacityResult").text(gib)
 	$("#toleranceResult").text(tolerance + ' Drive Failure' + (tolerance == 1 ? '':'s'))
 }
 
