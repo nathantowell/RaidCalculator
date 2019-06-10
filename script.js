@@ -25,7 +25,7 @@ function calculateCapacity(n, c, t) {
 	return e * (n * c)
 }
 
-function convertToFormatted(capacity) {
+function convertToGib(capacity) {
 	return capacity * 0.931
 }
 
@@ -49,15 +49,15 @@ function test(disks, capacity, type) {
 	return true;
 }
 
-function setResults(total, formatted, tolerance) {
-	$("#totalCapacityResult").text(total + ' GB')
-	$("#formattedCapacityResult").text(formatted + ' GB')
+function setResults(gb, gib, tolerance) {
+	$("#gbCapacityResult").text(gb)
+	$("#gibCapacityResult").text(gib)
 	$("#toleranceResult").text(tolerance + ' Drive Failure' + (tolerance == 1 ? '':'s'))
 }
 
 function clearResults() {
-	$("#totalCapacityResult").text('--')
-	$("#formattedCapacityResult").text('--')
+	$("#gbCapacityResult").text('--')
+	$("#gibCapacityResult").text('--')
 	$("#toleranceResult").text('--')
 }
 
@@ -74,8 +74,8 @@ function trigger() {
 		return console.log(result)
 	}	
 
-	var total = Math.floor(calculateCapacity(disks, capacity, type))
-	var formatted = Math.floor(convertToFormatted(total))
+	var gb = Math.floor(calculateCapacity(disks, capacity, type))
+	var gib = Math.floor(convertToGib(gb))
 
 	var tolerance = 0
 	switch (type) {
@@ -101,7 +101,7 @@ function trigger() {
 			break
 	}
 
-	setResults(total, formatted, tolerance)
+	setResults(gb, gib, tolerance)
 }
 
 $(":text").keyup(function() {
