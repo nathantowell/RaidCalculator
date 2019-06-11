@@ -104,11 +104,7 @@ function trigger() {
 	setResults(gb, gib, tolerance)
 }
 
-$(":text").keyup(function() {
-  trigger()
-})
-
-$(":number").keyup(function() {
+$(':input').bind('click keyup', function() {
   trigger()
 })
 
