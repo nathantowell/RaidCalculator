@@ -108,6 +108,10 @@ $(":text").keyup(function() {
   trigger()
 })
 
+$(":number").keyup(function() {
+  trigger()
+})
+
 $("#raidType").change(function() {
   trigger()
 })
