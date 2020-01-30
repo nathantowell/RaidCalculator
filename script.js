@@ -10,14 +10,18 @@ function calculateCapacity(n, c, t) {
 			e = 1 / n
 			break
 		case '2':
-			// RAID 5
+			// RAID 5/RAIDZ1
 			e = 1 - (1 / n)
 			break
 		case '3':
-			// RAID 6
+			// RAID 6/RAIDZ2
 			e = 1 - (2 / n)
 			break
 		case '4':
+			// RAIDZ3
+			e = 1 - (3 / n)
+			break
+		case '5':
 			// RAID 10
 			e = 1 * 0.5
 			break
@@ -88,14 +92,18 @@ function trigger() {
 			tolerance = disks - 1
 			break
 		case '2':
-			// RAID 5
+			// RAID 5/RAIDZ1
 			tolerance = 1
 			break
 		case '3':
-			// RAID 6
+			// RAID 6/RAIDZ2
 			tolerance = 2
 			break
 		case '4':
+			// RAIDZ3
+			tolerance = 3
+			break
+		case '5':
 			// RAID 10
 			tolerance = 1
 			break
